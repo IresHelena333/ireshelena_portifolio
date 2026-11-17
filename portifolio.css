@@ -1,0 +1,217 @@
+/* ============================================================
+   VARIÁVEIS & RESET
+   ============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --rosa-100: #fff0f5;
+    --rosa-300: #ffd1dc;
+    --rosa-500: #ff9eb5;
+    --rosa-600: #f78da7;
+    --texto: #5c3a4a;
+    --texto-suave: #8a6a78;
+    --branco: #fff;
+    --sombra: 0 10px 30px rgba(247, 141, 167, .18);
+    --transicao: all .35s cubic-bezier(.25, .8, .25, 1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--rosa-100);
+    color: var(--texto);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background .4s, color .4s;
+}
+
+body.dark {
+    --rosa-100: #2a1e24;
+    --rosa-300: #5c3a4a;
+    --texto: #ffe4ec;
+    --texto-suave: #c9a8b5;
+    --branco: #3d2a32;
+    --sombra: 0 10px 30px rgba(0, 0, 0, .4);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255, 240, 245, .85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rosa-300);
+    transition: var(--transicao);
+}
+body.dark .header { background: rgba(42, 30, 36, .85); }
+
+.nav {
+    max-width: 1100px; margin: 0 auto; padding: 1rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.nav__logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--texto); text-decoration: none; }
+.nav__logo span { color: var(--rosa-600); }
+.nav__list { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+.nav__link { position: relative; text-decoration: none; color: var(--texto-suave); font-size: .95rem; font-weight: 500; transition: var(--transicao); }
+.nav__link::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: var(--rosa-500); transition: width .35s; }
+.nav__link:hover { color: var(--rosa-600); }
+.nav__link:hover::after { width: 100%; }
+
+.tema-btn {
+    background: var(--branco); border: 1px solid var(--rosa-300);
+    border-radius: 50%; width: 40px; height: 40px; font-size: 1.1rem;
+    cursor: pointer; transition: var(--transicao);
+}
+.tema-btn:hover { transform: rotate(20deg) scale(1.1); background: var(--rosa-500); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 8rem 2rem 4rem; overflow: hidden; }
+.hero__content { position: relative; z-index: 2; text-align: center; max-width: 700px; animation: fadeUp 1s ease forwards; }
+.hero__greeting { font-size: 1rem; color: var(--rosa-600); letter-spacing: 2px; text-transform: uppercase; }
+.hero__title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 7vw, 5rem); line-height: 1.1; margin: .5rem 0; }
+.hero__subtitle { font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--texto-suave); margin-bottom: 1.5rem; min-height: 1.6em; }
+
+.hero__badges { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-bottom: 2rem; }
+.badge { background: var(--branco); color: var(--rosa-600); padding: .4rem 1rem; border-radius: 50px; font-size: .85rem; box-shadow: var(--sombra); transition: var(--transicao); cursor: pointer; }
+.badge:hover, .badge.ativo { background: var(--rosa-500); color: var(--branco); transform: translateY(-3px) scale(1.05); }
+
+.hero__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; animation: float 8s ease-in-out infinite; }
+.blob--1 { width: 380px; height: 380px; background: var(--rosa-300); top: -80px; left: -80px; }
+.blob--2 { width: 300px; height: 300px; background: var(--rosa-500); bottom: -60px; right: -60px; animation-delay: 2s; }
+.blob--3 { width: 250px; height: 250px; background: var(--rosa-300); top: 40%; left: 60%; animation-delay: 4s; }
+
+/* ============================================================
+   BOTÕES
+   ============================================================ */
+.btn { display: inline-block; padding: .85rem 2rem; border-radius: 50px; font-weight: 600; font-size: .95rem; text-decoration: none; transition: var(--transicao); cursor: pointer; border: 2px solid transparent; }
+.btn--primary { background: var(--rosa-500); color: var(--branco); box-shadow: 0 8px 20px rgba(255, 158, 181, .45); }
+.btn--primary:hover { background: var(--rosa-600); transform: translateY(-4px); }
+.btn--outline { background: transparent; color: var(--rosa-600); border-color: var(--rosa-500); }
+.btn--outline:hover { background: var(--rosa-500); color: var(--branco); transform: translateY(-4px); }
+
+/* ============================================================
+   SEÇÕES & CARDS
+   ============================================================ */
+.section { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+.section__title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 2.8rem); text-align: center; margin-bottom: 3rem; }
+.section__title span { color: var(--rosa-600); }
+
+.card { background: var(--branco); border-radius: 20px; padding: 2rem; box-shadow: var(--sombra); transition: var(--transicao); border: 1px solid var(--rosa-300); }
+.card:hover { transform: translateY(-8px); box-shadow: 0 18px 45px rgba(247, 141, 167, .35); border-color: var(--rosa-500); }
+.card__icon { font-size: 2.2rem; margin-bottom: 1rem; display: inline-block; transition: var(--transicao); }
+.card:hover .card__icon { transform: scale(1.2) rotate(-8deg); }
+.card__title { font-size: 1.25rem; margin-bottom: .75rem; }
+.card__desc { font-size: .95rem; color: var(--texto-suave); margin-bottom: 1rem; }
+
+/* ============================================================
+   SOBRE
+   ============================================================ */
+.sobre__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.card--info h3 { color: var(--rosa-600); margin-bottom: 1rem; font-size: 1.2rem; }
+.stats { list-style: none; }
+.stats li { padding: .5rem 0; border-bottom: 1px dashed var(--rosa-300); font-size: .95rem; color: var(--texto-suave); transition: var(--transicao); }
+.stats li:hover { padding-left: 8px; color: var(--rosa-600); }
+.stats strong { color: var(--rosa-600); font-size: 1.1rem; }
+
+/* ============================================================
+   PROJETOS
+   ============================================================ */
+.filtros { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.filtro { background: var(--branco); border: 1px solid var(--rosa-300); color: var(--texto-suave); padding: .4rem 1.2rem; border-radius: 50px; font-size: .85rem; cursor: pointer; transition: var(--transicao); }
+.filtro:hover, .filtro.ativo { background: var(--rosa-500); color: var(--branco); border-color: var(--rosa-500); }
+
+.projetos__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.card--projeto { display: flex; flex-direction: column; position: relative; overflow: hidden; }
+.card--projeto::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--rosa-300), var(--rosa-600)); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
+.card--projeto:hover::before { transform: scaleX(1); }
+.card__tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.card__tags span { background: var(--rosa-100); color: var(--rosa-600); padding: .25rem .8rem; border-radius: 50px; font-size: .8rem; transition: var(--transicao); }
+.card__tags span:hover { background: var(--rosa-500); color: var(--branco); }
+.card__link { margin-top: auto; color: var(--rosa-600); text-decoration: none; font-weight: 600; font-size: .95rem; transition: var(--transicao); }
+.card__link:hover { color: var(--rosa-500); letter-spacing: .5px; }
+
+.card--projeto.escondido { display: none; }
+
+/* ============================================================
+   ÁREAS
+   ============================================================ */
+.areas__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2rem; }
+.card--area { text-align: center; }
+.card--area h3 { color: var(--rosa-600); margin-bottom: .5rem; font-size: 1.15rem; }
+
+/* ============================================================
+   CONTATO
+   ============================================================ */
+.contato { text-align: center; }
+.contato__text { color: var(--texto-suave); font-size: 1.1rem; margin-bottom: 2rem; }
+.contato__links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer { text-align: center; padding: 2rem; background: var(--rosa-300); color: var(--texto-suave); font-size: .9rem; }
+
+/* ============================================================
+   BOTÃO MISTERIOSO
+   ============================================================ */
+.misterio-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: var(--rosa-600);
+    color: var(--branco);
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(247, 141, 167, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transform: translateY(20px) scale(0.6);
+    transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s ease;
+    pointer-events: none;
+}
+
+.misterio-btn.visivel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    animation: pulsoMisterio 2s ease-in-out infinite;
+}
+
+.misterio-btn:hover {
+    background: var(--rosa-500);
+    transform: translateY(-4px) scale(1.12);
+}
+
+@keyframes pulsoMisterio {
+    0%, 100% { box-shadow: 0 8px 24px rgba(247, 141, 167, 0.5); }
+    50% { box-shadow: 0 8px 34px rgba(247, 141, 167, 0.9); }
+}
+
+/* ============================================================
+   ANIMAÇÕES
+   ============================================================ */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -30px) scale(1.08); } }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s, transform .8s; }
+.reveal.ativo { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   RESPONSIVIDADE
+   ============================================================ */
+@media (max-width: 600px) {
+    .nav__list { display: none; }
+    .section { padding: 3.5rem 1.5rem; }
+    .hero__actions { flex-direction: column; align-items: center; }
+    .btn { width: 100%; max-width: 260px; text-align: center; }
+}

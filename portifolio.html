@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ires Helena | Portfólio</title>
+    <link rel="stylesheet" href="portifolio.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#home" class="nav__logo">Ires<span>Helena</span></a>
+            <ul class="nav__list">
+                <li><a href="#sobre" class="nav__link">Sobre</a></li>
+                <li><a href="#projetos" class="nav__link">Projetos</a></li>
+                <li><a href="#areas" class="nav__link">Áreas</a></li>
+                <li><a href="#contato" class="nav__link">Contato</a></li>
+                <li><button class="tema-btn" id="temaBtn" aria-label="Alternar tema">🌙</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero">
+        <div class="hero__content">
+            <p class="hero__greeting">Olá, eu sou</p>
+            <h1 class="hero__title">Ires Helena</h1>
+            <p class="hero__subtitle">Desenvolvedora Back-End &amp; Entusiasta de JavaScript</p>
+            <div class="hero__badges">
+                <span class="badge">JavaScript</span>
+                <span class="badge">Node.js</span>
+                <span class="badge">APIs</span>
+                <span class="badge">Back-End</span>
+            </div>
+            <div class="hero__actions">
+                <a href="#projetos" class="btn btn--primary">Ver Projetos</a>
+                <a href="https://github.com/IresHelena333" target="_blank" rel="noopener" class="btn btn--outline">GitHub</a>
+            </div>
+        </div>
+        <div class="hero__decor">
+            <div class="blob blob--1"></div>
+            <div class="blob blob--2"></div>
+            <div class="blob blob--3"></div>
+        </div>
+    </section>
+
+    <!-- ===== SOBRE ===== -->
+    <section id="sobre" class="section sobre">
+        <h2 class="section__title">Sobre <span>Mim</span></h2>
+        <div class="sobre__grid">
+            <div class="card card--info">
+                <h3>Quem sou</h3>
+                <p>Desenvolvedora em formação com foco em back-end e JavaScript. Apaixonada por construir APIs, resolver problemas com código e aprender continuamente.</p>
+            </div>
+            <div class="card card--info">
+                <h3>Estatísticas GitHub</h3>
+                <ul class="stats">
+                    <li><strong>42</strong> contribuições no último ano</li>
+                    <li><strong>3</strong> repositórios públicos</li>
+                    <li><strong>JavaScript</strong> como linguagem principal</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJETOS ===== -->
+    <section id="projetos" class="section projetos">
+        <h2 class="section__title">Meus <span>Projetos</span></h2>
+        <div class="filtros">
+            <button class="filtro ativo" data-filtro="todos">Todos</button>
+            <button class="filtro" data-filtro="api">API</button>
+            <button class="filtro" data-filtro="javascript">JavaScript</button>
+        </div>
+        <div class="projetos__grid">
+
+            <article class="card card--projeto" data-tilt>
+                <div class="card__icon">📚</div>
+                <h3 class="card__title">codigos</h3>
+                <p class="card__desc">Repositório com exercícios, algoritmos e códigos diversos em JavaScript. Base de estudos e práticas.</p>
+                <div class="card__tags">
+                    <span>JavaScript</span>
+                </div>
+                <a href="https://github.com/IresHelena333/codigos" target="_blank" rel="noopener" class="card__link">Ver no GitHub →</a>
+            </article>
+
+            <article class="card card--projeto" data-tilt>
+                <div class="card__icon">📖</div>
+                <h3 class="card__title">api-biblioteca</h3>
+                <p class="card__desc">API REST para gerenciamento de biblioteca, com rotas para livros, autores e empréstimos.</p>
+                <div class="card__tags">
+                    <span>JavaScript</span>
+                    <span>API</span>
+                    <span>Back-End</span>
+                </div>
+                <a href="https://github.com/IresHelena333/api-biblioteca" target="_blank" rel="noopener" class="card__link">Ver no GitHub →</a>
+            </article>
+
+            <article class="card card--projeto" data-tilt>
+                <div class="card__icon">⚙️</div>
+                <h3 class="card__title">av2_back_end_ires</h3>
+                <p class="card__desc">Projeto de avaliação de back-end, explorando conceitos de servidor, rotas e persistência de dados.</p>
+                <div class="card__tags">
+                    <span>JavaScript</span>
+                    <span>Node.js</span>
+                </div>
+                <a href="https://github.com/IresHelena333/av2_back_end_ires" target="_blank" rel="noopener" class="card__link">Ver no GitHub →</a>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ===== ÁREAS ===== -->
+    <section id="areas" class="section areas">
+        <h2 class="section__title">Áreas de <span>Atuação</span></h2>
+        <div class="areas__grid">
+            <div class="card card--area">
+                <div class="card__icon">🖥️</div>
+                <h3>Back-End</h3>
+                <p>Construção de servidores, rotas e lógica de negócio com Node.js e JavaScript.</p>
+            </div>
+            <div class="card card--area">
+                <div class="card__icon">🔌</div>
+                <h3>APIs REST</h3>
+                <p>Desenvolvimento de APIs para integração entre sistemas e consumo de dados.</p>
+            </div>
+            <div class="card card--area">
+                <div class="card__icon">🗄️</div>
+                <h3>Banco de Dados</h3>
+                <p>Modelagem e manipulação de dados para aplicações back-end.</p>
+            </div>
+            <div class="card card--area">
+                <div class="card__icon">🧩</div>
+                <h3>Algoritmos</h3>
+                <p>Resolução de problemas e exercícios de lógica com JavaScript.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section id="contato" class="section contato">
+        <h2 class="section__title">Vamos <span>Conversar?</span></h2>
+        <p class="contato__text">Estou aberta a oportunidades, colaborações e trocas de conhecimento.</p>
+        <div class="contato__links">
+            <a href="https://github.com/IresHelena333" target="_blank" rel="noopener" class="btn btn--primary">GitHub</a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <p>© 2025 Ires Helena · Feito com 💗</p>
+    </footer>
+
+    <!-- ===== BOTÃO MISTERIOSO ===== -->
+    <button class="misterio-btn" id="misterioBtn" aria-label="Botão misterioso">?</button>
+    <audio id="somMisterio" src="return_by_death.mp3" preload="auto"></audio>
+
+    <script src="portifolio.js"></script>
+</body>
+</html>
