@@ -6,10 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ========== 1. MODO ESCURO ========== */
     const temaBtn = document.getElementById('temaBtn');
-    temaBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        temaBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-    });
+    if (temaBtn) {
+        temaBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            temaBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+        });
+    }
 
     /* ========== 2. FILTRO DE PROJETOS ========== */
     const filtros = document.querySelectorAll('.filtro');
@@ -26,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ========== 3. BADGES CLICÁVEIS → PROJETOS ========== */
     document.querySelectorAll('.badge').forEach(b => b.addEventListener('click', () => {
-        document.getElementById('projetos').scrollIntoView({ behavior: 'smooth' });
+        const secaoProjetos = document.getElementById('projetos');
+        if (secaoProjetos) secaoProjetos.scrollIntoView({ behavior: 'smooth' });
     }));
 
     /* ========== 4. REVELAÇÃO AO ROLAR ========== */
@@ -104,26 +107,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ========== 10. ANO DINÂMICO ========== */
-    document.querySelector('.footer p').innerHTML =
-        `© ${new Date().getFullYear()} Ires Helena · Feito com 💗`;
+    const footerP = document.querySelector('.footer p');
+    if (footerP) {
+        footerP.innerHTML = `© ${new Date().getFullYear()} Ires Helena · Feito com 💗`;
+    }
 
-    /* ========== 11. BOTÃO MISTERIOSO (aparece ao fim da página) ========== */
+    /* ========== 11. BOTÃO MISTERIOSO ========== */
     const misterioBtn = document.getElementById('misterioBtn');
     const somMisterio = document.getElementById('somMisterio');
 
-    window.addEventListener('scroll', () => {
-        const fimDaPagina =
-            window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
-        misterioBtn.classList.toggle('visivel', fimDaPagina);
+    if (misterioBtn && somMisterio) {
+        window.addEventListener('scroll', () => {
+            const fimDaPagina = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
+            misterioBtn.classList.toggle('visivel', fimDaPagina);
+        });
+
+        misterioBtn.addEventListener('click', () => {
+            somMisterio.currentTime = 0;
+            somMisterio.play().catch(err => console.warn('Áudio bloqueado:', err));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    /* ========== 12. CURSOR COM RASTRO SUAVE ========== */
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+
+    let glowX = window.innerWidth / 2;
+    let glowY = window.innerHeight / 2;
+    let mouseX = glowX;
+    let mouseY = glowY;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
 
-    misterioBtn.addEventListener('click', () => {
-        // Toca a música uma única vez
-        somMisterio.currentTime = 0;
-        somMisterio.play().catch(err => console.warn('Áudio bloqueado:', err));
+    const animarGlow = () => {
+        glowX += (mouseX - glowX) * 0.18;
+        glowY += (mouseY - glowY) * 0.18;
+        glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
+        requestAnimationFrame(animarGlow);
+    };
+    animarGlow();
 
-        // Volta suavemente ao topo
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    /* ========== 13. PARTÍCULAS AO CLICAR ========== */
+    const emojis = ['✨', '💖', '🌸', '⭐', '💫', '🩷'];
+    const cores = ['#f78da7', '#ff9eb5', '#ffd1dc', '#ffe4ec'];
+
+    document.addEventListener('click', (e) => {
+        const alvo = e.target;
+        const clicavel = alvo.closest('a, button, .badge, .card, .filtro, .nav__link, .btn');
+        const qtd = clicavel ? 10 : 6;
+
+        for (let i = 0; i < qtd; i++) {
+            const p = document.createElement('span');
+            p.className = 'particula-click';
+            p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+            const angulo = Math.random() * Math.PI * 2;
+            const dist = 40 + Math.random() * 60;
+            const dx = Math.cos(angulo) * dist;
+            const dy = Math.sin(angulo) * dist - 30;
+            const rot = (Math.random() * 360 - 180) + 'deg';
+
+            p.style.left = e.clientX + 'px';
+            p.style.top  = e.clientY + 'px';
+            p.style.setProperty('--dx', dx + 'px');
+            p.style.setProperty('--dy', dy + 'px');
+            p.style.setProperty('--rot', rot);
+            p.style.color = cores[Math.floor(Math.random() * cores.length)];
+            p.style.fontSize = (12 + Math.random() * 10) + 'px';
+
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 950);
+        }
     });
 
 });
